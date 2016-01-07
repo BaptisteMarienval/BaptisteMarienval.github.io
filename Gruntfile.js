@@ -90,7 +90,13 @@ module.exports = function(grunt) {
 			server: {
 				options: {
 					port: port,
-					base: base,
+					base: {
+						path: '.',
+						options: {
+								index: 'index.html',
+								maxAge: 300000
+							}
+						},
 					livereload: true,
 					open: true
 				}
@@ -99,7 +105,7 @@ module.exports = function(grunt) {
 
 		zip: {
 			'reveal-js-presentation.zip': [
-				'index.html',
+				'slides/*.html',
 				'css/**',
 				'js/**',
 				'lib/**',
@@ -126,7 +132,7 @@ module.exports = function(grunt) {
 				tasks: 'css-core'
 			},
 			html: {
-				files: ['index.html']
+				files: ['slides/*.html']
 			},
 			markdown: {
 				files: ['./*.md']
@@ -163,6 +169,16 @@ module.exports = function(grunt) {
 
 	// Package presentation to archive
 	grunt.registerTask('package', ['default', 'zip']);
+
+	// Package presentation to archive
+	grunt.registerTask('initPres', 'Initialisation presentation', function(arg1) {
+		if (arguments.length === 0) {
+		 grunt.log.writeln(this.name + ", pas d'argument");
+	 }
+	 else {
+		 grunt.file.copy ('slides/'+arg1+'.html', 'index.html');
+	}
+});
 
 	// Serve presentation locally
 	grunt.registerTask('serve', ['connect', 'watch']);
