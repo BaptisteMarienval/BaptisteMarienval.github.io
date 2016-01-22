@@ -170,7 +170,7 @@ module.exports = function(grunt) {
 	// Package presentation to archive
 	grunt.registerTask('package', ['default', 'zip']);
 
-	// Package presentation to archive
+	// Copy html file from slides directory to root
 	grunt.registerTask('initPres', 'Initialisation presentation', function(arg1) {
 		if (arguments.length === 0) {
 		 grunt.log.writeln(this.name + ", pas d'argument");
@@ -179,7 +179,6 @@ module.exports = function(grunt) {
 		 grunt.file.copy ('slides/'+arg1+'.html', 'index.html');
 	}
 });
-
 	// Serve presentation locally
 	grunt.registerTask('serve', ['connect', 'watch']);
 

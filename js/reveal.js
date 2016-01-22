@@ -52,7 +52,7 @@
 			progress: true,
 
 			// Display the page number of the current slide
-			slideNumber: false,
+			slideNumber: true,
 
 			// Push each slide change to the browser history
 			history: false,
@@ -2573,7 +2573,7 @@
 					break;
 				default:
 					value.push( indexh + 1 );
-					if( isVerticalSlide() ) value.push( '.', indexv + 1 );
+					if( isVerticalSlide() && indexv > 0) value.push( '.', indexv + 1 );
 			}
 
 			dom.slideNumber.innerHTML = formatSlideNumber( value[0], value[1], value[2] );
